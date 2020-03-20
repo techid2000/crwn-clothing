@@ -5,7 +5,6 @@ const INITIAL_STATE = {
   hidden: true,
   cartItems: []
 };
-
 const cardReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case CardActionTypes.TOGGLE_CART_HIDDEN:
