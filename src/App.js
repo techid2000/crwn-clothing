@@ -15,6 +15,7 @@ import { auth, createUserProfileDocument } from './firebase/firebase.utils';
 import SandboxPage from './pages/sandbox/sandbox.component';
 
 import { setCurrentUser } from './redux/user/user.actions';
+import CheckoutPage from './pages/checkout/checkout.component';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
@@ -47,11 +48,20 @@ class App extends React.Component {
         <Switch>
           <Route exact path='/' component={Homepage} />
           {/* or use render props */}
-          <Route exact path='/signin'>
-            {this.props.currentUser ? <Redirect to='/' /> : <SignInAndSignUpPage />}
-          </Route>
+          <Route
+            exact
+            path='/signin'
+            render={routeProps =>
+              this.props.currentUser ? (
+                <Redirect to='/' />
+              ) : (
+                <SignInAndSignUpPage />
+              )
+            }
+          />
           <Route exact path='/sandbox' component={SandboxPage} />
           <Route path='/shop' component={ShopPage} />
+          <Route path='/checkout' component={CheckoutPage} />
         </Switch>
       </div>
     );
